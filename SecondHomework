@@ -1,0 +1,18 @@
+public class secondHw {
+public static void main(String[] args) {
+	int age=25;
+	System.out.println(age);
+	
+	boolean hasJob = (false);
+	System.out.println(hasJob);
+	
+	char studentGrade = 'C';
+	System.out.println(studentGrade);
+	
+	double carPrice = 25000;
+	System.out.println(carPrice);
+	
+	String employeeName = "Melik";
+	System.out.println(employeeName);
+}
+}
