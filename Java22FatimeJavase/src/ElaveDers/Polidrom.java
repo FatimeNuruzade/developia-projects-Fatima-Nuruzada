@@ -12,6 +12,6 @@ public static void main(String[] args) {
         ters += soz.charAt(i);
     }
 
-    System.out.println("Tərsi: " + ters);
+    System.out.println("Tersi: " + ters);
 }
 }
