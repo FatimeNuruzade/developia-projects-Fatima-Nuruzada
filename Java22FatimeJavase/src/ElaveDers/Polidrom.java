@@ -12,6 +12,10 @@ public static void main(String[] args) {
         ters += soz.charAt(i);
     }
 
-    System.out.println("Tərsi: " + ters);
+    System.out.println("Tersi: " + ters);
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 86f85ca06608339c54b8d987f07fc9a1071be809
 }
 }
