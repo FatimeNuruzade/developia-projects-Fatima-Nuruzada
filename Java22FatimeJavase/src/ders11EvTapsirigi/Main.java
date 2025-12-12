@@ -13,5 +13,6 @@ public static void main(String[] args) {
 	System.out.println("cumlede Jav var? "+ message.contains("Jav"));
 	System.out.println("cumle faydalıdır ile bitir: " + message.endsWith("faydalıdır"));
 	System.out.println("Java ile baslayir: "+ message.startsWith("Java"));
+	
 }
 }
