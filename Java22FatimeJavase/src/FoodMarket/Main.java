@@ -4,59 +4,76 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-public static void main(String[] args) {
-	Scanner sc = new Scanner(System.in);
-	
-	System.out.println("Adiniz: ");
-	String user = sc.next();
-	
-	System.out.println("Balansiniz: ");
-	double balance = sc.nextInt();
-	
-	 ArrayList<Food> foodList = new ArrayList<>();
-     foodList.add(new Food(1, "Pizza", 12.5));
-     foodList.add(new Food(2, "Burger", 8.0));
-     foodList.add(new Food(3, "Doner", 6.5));
-     foodList.add(new Food(4, "Salat", 4.0));
-     foodList.add(new Food(5, "Kartof Free", 3.5));
-     foodList.add(new Food(6, "Sendviç", 5.0));
-     foodList.add(new Food(7, "Pasta", 10.0));
-     foodList.add(new Food(8, "Şorba", 4.5));
-     foodList.add(new Food(9, "Kabab", 15.0));
-     foodList.add(new Food(10, "Lahmacun", 2.5));
+    public static void main(String[] args) {
 
-     ArrayList<Food> boughtFoods = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
-     boolean continueBuying = true;
-     while(continueBuying) {
-    	 System.out.println("Yemekler");
-         for (Food f : foodList) {
-             System.out.println(f.id + ". " + f.foodName + " - " + f.price + " AZN");
-     }
-         System.out.print("Yemeyin ID-sini daxil edin: ");
-         int selectedId = sc.nextInt();
+        System.out.print("Adınızı daxil edin: ");
+        String name = sc.nextLine();
 
-         Food selectedFood = null;
+        System.out.print("Balansınızı daxil edin: ");
+        double balance = sc.nextDouble();
 
-         for (Food f : foodList) {
-             if (f.id == selectedId) {
-                 selectedFood = f;
-                 break;
-             }
-         }
+        User user = new User(name, balance);
 
-         if (selectedFood == null) {
-             System.out.println("Yanlis ID daxil etdiniz!");
-         } else {
-             if (balance >= selectedFood.price) {
-                 balance -= selectedFood.price;
-                 boughtFoods.add(selectedFood);
-                 System.out.println(selectedFood.foodName + " alındı.");
-                 System.out.println("Qalan balans: " + balance + " AZN");
-             } else {
-                 System.out.println("Kifayet qeder balans yoxdur!");
-             }
-         }
+        ArrayList<Food> foods = new ArrayList<>();
+        foods.add(new Food(1, "Pizza", 8));
+        foods.add(new Food(2, "Burger", 6));
+        foods.add(new Food(3, "Doner", 5));
+        foods.add(new Food(4, "Salat", 4));
+        foods.add(new Food(5, "Kola", 2));
+        foods.add(new Food(6, "Çay", 1));
+        foods.add(new Food(7, "Kabab", 10));
+        foods.add(new Food(8, "Şorba", 3));
+        foods.add(new Food(9, "Pasta", 7));
+        foods.add(new Food(10, "Chay", 3));
 
+        boolean devam = true;
+
+        while (devam) {
+            System.out.println("MENYU");
+            for (Food f : foods) {
+                System.out.println(f);
+            }
+
+            System.out.print("Yeməyin ID-sini seçin: ");
+            int id = sc.nextInt();
+
+            Food selectedFood = null;
+            for (Food f : foods) {
+                if (f.getId() == id) {
+                    selectedFood = f;
+                    break;
+                }
+            }
+
+            if (selectedFood != null) {
+                user.buyFood(selectedFood);
+            } else {
+                System.out.println("Yanlış ID ❗");
+            }
+
+            System.out.print("Başqa yemək almaq istəyirsən? (bəli/xeyr): ");
+            sc.nextLine();
+            String answer = sc.nextLine();
+
+            if (answer.equalsIgnoreCase("xeyr")) {
+                devam = false;
+            }
+        }
+        System.out.println("ALIŞ MƏLUMATI");
+        System.out.println("İstifadəçi: " + user.getName());
+        System.out.println("Alınan yeməklər:");
+
+        if (user.getBoughtFoods().isEmpty()) {
+            System.out.println("Heç bir yemək alınmayıb");
+        } else {
+            for (Food f : user.getBoughtFoods()) {
+                System.out.println("- " + f.getName());
+            }
+        }
+
+        System.out.println("Qalan balans: " + user.getBalance() + " AZN");
+    }
 }
-}}
+
